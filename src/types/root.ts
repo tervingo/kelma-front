@@ -27,6 +27,6 @@ export interface RootCreate {
 
 export interface RootUpdate {
   root?: string;
-  prim?: string;
+  prim?: string | null;
   mode?: ModeData;
 }
