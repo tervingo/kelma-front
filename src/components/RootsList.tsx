@@ -61,7 +61,7 @@ const RootsList: React.FC<RootsListProps> = ({ onEdit, refresh }) => {
           <thead>
             <tr>
               <th>Root</th>
-              <th>Primary Meaning</th>
+              <th>Primary Meaning (Base)</th>
               <th>Modes</th>
               <th>Actions</th>
             </tr>
@@ -70,26 +70,25 @@ const RootsList: React.FC<RootsListProps> = ({ onEdit, refresh }) => {
             {roots.map((root) => (
               <tr key={root._id}>
                 <td className="root-text">{root.root}</td>
-                <td>{root.prim}</td>
+                <td>{root.mode.base.prim || '-'}</td>
                 <td>
                   <div className="modes">
                     <span className="mode-badge">base</span>
                     {root.mode.long && <span className="mode-badge">long</span>}
                     {root.mode.strong && <span className="mode-badge">strong</span>}
-                    {root.mode.redup && <span className="mode-badge">redup</span>}
                   </div>
                 </td>
                 <td>
                   <div className="actions">
-                    <button 
-                      className="btn-edit" 
+                    <button
+                      className="btn-edit"
                       onClick={() => onEdit(root)}
                       title="Edit"
                     >
                       ✏️
                     </button>
-                    <button 
-                      className="btn-delete" 
+                    <button
+                      className="btn-delete"
                       onClick={() => handleDelete(root._id)}
                       title="Delete"
                     >

@@ -1,32 +1,29 @@
 export interface ModeFields {
-  act_agt: string;
-  act_pat: string;
-  pas_agt: string;
-  pas_pat: string;
+  prim: string | null;
+  act_agt: string | null;
+  act_pat: string | null;
+  pas_agt: string | null;
+  pas_pat: string | null;
 }
 
 export interface ModeData {
   base: ModeFields;
   long?: ModeFields | null;
   strong?: ModeFields | null;
-  redup?: ModeFields | null;
 }
 
 export interface Root {
   _id: string;
   root: string;
-  prim: string | null;
   mode: ModeData;
 }
 
 export interface RootCreate {
   root: string;
-  prim: string | null;
   mode: ModeData;
 }
 
 export interface RootUpdate {
   root?: string;
-  prim?: string | null;
   mode?: ModeData;
 }
