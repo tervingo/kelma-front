@@ -1,38 +1,104 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app {
   min-height: 100vh;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.app-header {
+  background-color: #2d2d30;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #3e3e42;
+}
+
+.app-header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.header-subtitle {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  margin-top: 0.3rem;
+}
+
+.app-container {
+  display: flex;
+  height: calc(100vh - 100px);
+}
+
+.sidebar {
+  width: 280px;
+  background-color: #252526;
+  border-right: 1px solid #3e3e42;
+  padding: 1.5rem 1rem;
+}
+
+.sidebar-section {
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-section h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sidebar-nav {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 0.5rem;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-item {
+  background: none;
+  border: none;
+  color: #cccccc;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: all 0.2s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-item:hover {
+  background-color: #2a2d2e;
+  color: #ffffff;
+}
+
+.nav-item.active {
+  background-color: #094771;
+  color: #ffffff;
+}
+
+.nav-item.btn-create {
+  background-color: #0e639c;
+  color: #ffffff;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.nav-item.btn-create:hover {
+  background-color: #1177bb;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  background-color: #1e1e1e;
 }
