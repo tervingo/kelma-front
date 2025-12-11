@@ -57,9 +57,8 @@ const RootForm: React.FC<RootFormProps> = ({ editingRoot, onSuccess, onCancel })
       return;
     }
 
-    const data: RootCreate = {
+    const data: any = {
       root: root.trim(),
-      prim: prim.trim() || null,
       mode: {
         base: baseMode,
         long: enableLong ? longMode : null,
@@ -67,6 +66,11 @@ const RootForm: React.FC<RootFormProps> = ({ editingRoot, onSuccess, onCancel })
         redup: enableRedup ? redupMode : null,
       },
     };
+
+    // Only include prim if it has a value
+    if (prim.trim()) {
+      data.prim = prim.trim();
+    }
 
     try {
       setLoading(true);
