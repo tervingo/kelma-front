@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { rootsApi } from '../services/api';
-import { Root, RootCreate, ModeFields } from '../types/root';
+import { Root, ModeFields } from '../types/root';
 import './RootForm.css';
 
 interface RootFormProps {
