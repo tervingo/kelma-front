@@ -31,7 +31,7 @@ const RootForm: React.FC<RootFormProps> = ({ editingRoot, onSuccess, onCancel })
   useEffect(() => {
     if (editingRoot) {
       setRoot(editingRoot.root);
-      setPrim(editingRoot.prim);
+      setPrim(editingRoot.prim || '');
       setBaseMode(editingRoot.mode.base);
 
       if (editingRoot.mode.long) {
@@ -52,14 +52,14 @@ const RootForm: React.FC<RootFormProps> = ({ editingRoot, onSuccess, onCancel })
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!root.trim() || !prim.trim()) {
-      alert('Root and Primary Meaning are required');
+    if (!root.trim()) {
+      alert('Root is required');
       return;
     }
 
     const data: RootCreate = {
       root: root.trim(),
-      prim: prim.trim(),
+      prim: prim.trim() || null,
       mode: {
         base: baseMode,
         long: enableLong ? longMode : null,
@@ -177,13 +177,12 @@ const RootForm: React.FC<RootFormProps> = ({ editingRoot, onSuccess, onCancel })
             />
           </div>
           <div className="field-group">
-            <label>Primary Meaning: *</label>
+            <label>Primary Meaning:</label>
             <input
               type="text"
               value={prim}
               onChange={(e) => setPrim(e.target.value)}
-              placeholder="Enter primary meaning"
-              required
+              placeholder="Enter primary meaning (optional)"
             />
           </div>
         </div>

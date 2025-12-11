@@ -15,13 +15,13 @@ export interface ModeData {
 export interface Root {
   _id: string;
   root: string;
-  prim: string;
+  prim: string | null;
   mode: ModeData;
 }
 
 export interface RootCreate {
   root: string;
-  prim: string;
+  prim: string | null;
   mode: ModeData;
 }
 
