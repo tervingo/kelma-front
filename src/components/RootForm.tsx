@@ -140,51 +140,57 @@ const RootForm: React.FC<RootFormProps> = ({ editingRoot, onSuccess, onCancel })
     return (
       <div className="mode-section">
         <h4>{mode.charAt(0).toUpperCase() + mode.slice(1)} Mode {mode === 'base' ? '(required)' : ''}</h4>
-        <div className="mode-fields">
-          <div className="field-group">
-            <label>Prim:</label>
-            <input
-              type="text"
-              value={modeData.prim || ''}
-              onChange={(e) => updateModeField(mode, 'prim', e.target.value)}
-              placeholder="Primary meaning"
-            />
+        <div className="mode-fields-layout">
+          <div className="field-row full-width">
+            <div className="field-group">
+              <label>Prim:</label>
+              <input
+                type="text"
+                value={modeData.prim || ''}
+                onChange={(e) => updateModeField(mode, 'prim', e.target.value)}
+                placeholder="Primary meaning"
+              />
+            </div>
           </div>
-          <div className="field-group">
-            <label>Act-Agt:</label>
-            <input
-              type="text"
-              value={modeData.act_agt || ''}
-              onChange={(e) => updateModeField(mode, 'act_agt', e.target.value)}
-              placeholder="Active Agent"
-            />
+          <div className="field-row two-columns">
+            <div className="field-group">
+              <label>Act-Agt:</label>
+              <input
+                type="text"
+                value={modeData.act_agt || ''}
+                onChange={(e) => updateModeField(mode, 'act_agt', e.target.value)}
+                placeholder="Active Agent"
+              />
+            </div>
+            <div className="field-group">
+              <label>Med-Agt:</label>
+              <input
+                type="text"
+                value={modeData.pas_agt || ''}
+                onChange={(e) => updateModeField(mode, 'pas_agt', e.target.value)}
+                placeholder="Middle Agent"
+              />
+            </div>
           </div>
-          <div className="field-group">
-            <label>Act-Pat:</label>
-            <input
-              type="text"
-              value={modeData.act_pat || ''}
-              onChange={(e) => updateModeField(mode, 'act_pat', e.target.value)}
-              placeholder="Active Patient"
-            />
-          </div>
-          <div className="field-group">
-            <label>Med-Agt:</label>
-            <input
-              type="text"
-              value={modeData.pas_agt || ''}
-              onChange={(e) => updateModeField(mode, 'pas_agt', e.target.value)}
-              placeholder="Middle Agent"
-            />
-          </div>
-          <div className="field-group">
-            <label>Med-Pat:</label>
-            <input
-              type="text"
-              value={modeData.pas_pat || ''}
-              onChange={(e) => updateModeField(mode, 'pas_pat', e.target.value)}
-              placeholder="Middle Patient"
-            />
+          <div className="field-row two-columns">
+            <div className="field-group">
+              <label>Act-Pat:</label>
+              <input
+                type="text"
+                value={modeData.act_pat || ''}
+                onChange={(e) => updateModeField(mode, 'act_pat', e.target.value)}
+                placeholder="Active Patient"
+              />
+            </div>
+            <div className="field-group">
+              <label>Med-Pat:</label>
+              <input
+                type="text"
+                value={modeData.pas_pat || ''}
+                onChange={(e) => updateModeField(mode, 'pas_pat', e.target.value)}
+                placeholder="Middle Patient"
+              />
+            </div>
           </div>
         </div>
       </div>

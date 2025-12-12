@@ -63,6 +63,27 @@
   border-left: 3px solid #094771;
 }
 
+.mode-fields-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.field-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.field-row.full-width {
+  width: 100%;
+}
+
+.field-row.two-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
 .mode-fields {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
