@@ -169,21 +169,21 @@ const RootForm: React.FC<RootFormProps> = ({ editingRoot, onSuccess, onCancel })
             />
           </div>
           <div className="field-group">
-            <label>Pas-Agt:</label>
+            <label>Med-Agt:</label>
             <input
               type="text"
               value={modeData.pas_agt || ''}
               onChange={(e) => updateModeField(mode, 'pas_agt', e.target.value)}
-              placeholder="Passive Agent"
+              placeholder="Middle Agent"
             />
           </div>
           <div className="field-group">
-            <label>Pas-Pat:</label>
+            <label>Med-Pat:</label>
             <input
               type="text"
               value={modeData.pas_pat || ''}
               onChange={(e) => updateModeField(mode, 'pas_pat', e.target.value)}
-              placeholder="Passive Patient"
+              placeholder="Middle Patient"
             />
           </div>
         </div>
