@@ -14,7 +14,7 @@ export type NounType = "primary" | "radical" | "deverbal";
 
 export interface NounFields {
   abs_plural: string;
-  abs_plural2: string;
+  abs_plural2: string | null;
   erg_plural: string;
   gen_plural: string;
   dat_plural: string;

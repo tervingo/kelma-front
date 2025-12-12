@@ -11,7 +11,7 @@ interface TranslationFormProps {
 
 const emptyNounFields: NounFields = {
   abs_plural: '',
-  abs_plural2: '',
+  abs_plural2: null,
   erg_plural: '',
   gen_plural: '',
   dat_plural: '',
@@ -213,12 +213,11 @@ const TranslationForm: React.FC<TranslationFormProps> = ({ editingTranslation, o
                 />
               </div>
               <div className="field-group">
-                <label>ABS Plural 2: *</label>
+                <label>ABS Plural 2:</label>
                 <input
                   type="text"
-                  value={nounFields.abs_plural2}
+                  value={nounFields.abs_plural2 || ''}
                   onChange={(e) => updateNounField('abs_plural2', e.target.value)}
-                  required
                 />
               </div>
             </div>
