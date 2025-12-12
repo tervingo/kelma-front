@@ -30,7 +30,7 @@ const emptyVerbFields: VerbFields = {
 
 const categories: Category[] = [
   "adjective", "adverb", "conjunction", "interjection",
-  "noun", "prefix", "pronoun", "quantifier", "suffix", "verb"
+  "noun", "numeral", "prefix", "pronoun", "quantifier", "suffix", "verb"
 ];
 
 const nounTypes: NounType[] = ["primary", "radical", "deverbal"];

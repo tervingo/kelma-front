@@ -4,6 +4,7 @@ export type Category =
   | "conjunction"
   | "interjection"
   | "noun"
+  | "numeral"
   | "prefix"
   | "pronoun"
   | "quantifier"
