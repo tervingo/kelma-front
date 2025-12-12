@@ -50,7 +50,7 @@ const TranslationForm: React.FC<TranslationFormProps> = ({ editingTranslation, o
     if (editingTranslation) {
       setKelma(editingTranslation.kelma);
       setEnglish(editingTranslation.english);
-      setRoot(editingTranslation.root);
+      setRoot(editingTranslation.root || '');
       setSwadesh(editingTranslation.swadesh);
       setCategory(editingTranslation.cat);
 
