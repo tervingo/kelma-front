@@ -69,15 +69,15 @@ const TranslationForm: React.FC<TranslationFormProps> = ({ editingTranslation, o
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!kelma.trim() || !english.trim() || !root.trim()) {
-      alert('Kelma, English, and Root are required');
+    if (!kelma.trim() || !english.trim()) {
+      alert('Kelma and English are required');
       return;
     }
 
     const data: any = {
       kelma: kelma.trim(),
       english: english.trim(),
-      root: root.trim(),
+      root: root.trim() || null,
       swadesh,
       cat: category,
     };
@@ -158,13 +158,12 @@ const TranslationForm: React.FC<TranslationFormProps> = ({ editingTranslation, o
 
           <div className="field-row">
             <div className="field-group">
-              <label>Root: *</label>
+              <label>Root:</label>
               <input
                 type="text"
                 value={root}
                 onChange={(e) => setRoot(e.target.value)}
                 placeholder="Root reference"
-                required
               />
             </div>
             <div className="field-group">

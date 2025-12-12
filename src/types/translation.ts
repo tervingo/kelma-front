@@ -36,7 +36,7 @@ export interface Translation {
   _id: string;
   kelma: string;
   english: string;
-  root: string;
+  root: string | null;
   swadesh: boolean;
   cat: Category;
   noun_type?: NounType;
@@ -47,7 +47,7 @@ export interface Translation {
 export interface TranslationCreate {
   kelma: string;
   english: string;
-  root: string;
+  root: string | null;
   swadesh: boolean;
   cat: Category;
   noun_type?: NounType;
@@ -58,7 +58,7 @@ export interface TranslationCreate {
 export interface TranslationUpdate {
   kelma?: string;
   english?: string;
-  root?: string;
+  root?: string | null;
   swadesh?: boolean;
   cat?: Category;
   noun_type?: NounType;
