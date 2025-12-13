@@ -10,7 +10,7 @@ import './App.css';
 type Section = 'roots' | 'translations';
 
 function App() {
-  const [activeSection, setActiveSection] = useState<Section>('roots');
+  const [activeSection, setActiveSection] = useState<Section>('translations');
   const [showForm, setShowForm] = useState(false);
   const [editingRoot, setEditingRoot] = useState<Root | null>(null);
   const [editingTranslation, setEditingTranslation] = useState<Translation | null>(null);
@@ -63,6 +63,28 @@ function App() {
 
       <div className="app-container">
         <aside className="sidebar">
+        <div className="sidebar-section">
+            <h3>Translations</h3>
+            <nav className="sidebar-nav">
+              <button
+                className={activeSection === 'translations' && !showForm ? 'nav-item active' : 'nav-item'}
+                onClick={() => handleSectionChange('translations')}
+              >
+                List All Translations
+              </button>
+              <button
+                className="nav-item btn-create"
+                onClick={() => {
+                  setActiveSection('translations');
+                  handleNewTranslation();
+                }}
+              >
+                + Enter New Translation
+              </button>
+            </nav>
+          </div>
+ 
+ 
           <div className="sidebar-section">
             <h3>Roots</h3>
             <nav className="sidebar-nav">
@@ -84,27 +106,7 @@ function App() {
             </nav>
           </div>
 
-          <div className="sidebar-section">
-            <h3>Translations</h3>
-            <nav className="sidebar-nav">
-              <button
-                className={activeSection === 'translations' && !showForm ? 'nav-item active' : 'nav-item'}
-                onClick={() => handleSectionChange('translations')}
-              >
-                List All Translations
-              </button>
-              <button
-                className="nav-item btn-create"
-                onClick={() => {
-                  setActiveSection('translations');
-                  handleNewTranslation();
-                }}
-              >
-                + Enter New Translation
-              </button>
-            </nav>
-          </div>
-        </aside>
+         </aside>
 
         <main className="main-content">
           {activeSection === 'roots' ? (
