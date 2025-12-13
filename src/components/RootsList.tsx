@@ -62,6 +62,10 @@ const RootsList: React.FC<RootsListProps> = ({ onEdit, refresh }) => {
             <tr>
               <th>Root</th>
               <th>Primary Meaning (Base)</th>
+              <th>Act Agt</th>
+              <th>Act Pat</th>
+              <th>Pas Agt</th>
+              <th>Pas Pat</th>
               <th>Modes</th>
               <th>Actions</th>
             </tr>
@@ -71,6 +75,10 @@ const RootsList: React.FC<RootsListProps> = ({ onEdit, refresh }) => {
               <tr key={root._id}>
                 <td className="root-text">{root.root}</td>
                 <td>{root.mode.base.prim || '-'}</td>
+                <td>{root.mode.base.act_agt || '-'}</td>
+                <td>{root.mode.base.act_pat || '-'}</td>
+                <td>{root.mode.base.pas_agt || '-'}</td>
+                <td>{root.mode.base.pas_pat || '-'}</td>
                 <td>
                   <div className="modes">
                     <span className="mode-badge">base</span>
