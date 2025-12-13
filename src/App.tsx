@@ -15,6 +15,7 @@ function App() {
   const [editingRoot, setEditingRoot] = useState<Root | null>(null);
   const [editingTranslation, setEditingTranslation] = useState<Translation | null>(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [pendingRootValue, setPendingRootValue] = useState<string | null>(null);
 
   const handleEdit = (root: Root) => {
     setEditingRoot(root);
@@ -24,16 +25,21 @@ function App() {
   const handleSuccess = () => {
     setShowForm(false);
     setEditingRoot(null);
+    setEditingTranslation(null);
+    setPendingRootValue(null);
     setRefreshTrigger(prev => prev + 1);
   };
 
   const handleCancel = () => {
     setShowForm(false);
     setEditingRoot(null);
+    setEditingTranslation(null);
+    setPendingRootValue(null);
   };
 
-  const handleNewRoot = () => {
+  const handleNewRoot = (rootValue?: string) => {
     setEditingRoot(null);
+    setPendingRootValue(rootValue || null);
     setShowForm(true);
   };
 
@@ -52,6 +58,21 @@ function App() {
     setShowForm(false);
     setEditingRoot(null);
     setEditingTranslation(null);
+    setPendingRootValue(null);
+  };
+
+  const handleViewRoot = (rootValue: string) => {
+    setActiveSection('roots');
+    setShowForm(false);
+    setEditingRoot(null);
+    setEditingTranslation(null);
+    setPendingRootValue(null);
+    // The RootsList component will need to handle highlighting the specific root
+  };
+
+  const handleCreateRootForTranslation = (rootValue: string) => {
+    setActiveSection('roots');
+    handleNewRoot(rootValue);
   };
 
   return (
@@ -113,6 +134,7 @@ function App() {
             showForm ? (
               <RootForm
                 editingRoot={editingRoot}
+                initialRootValue={pendingRootValue}
                 onSuccess={handleSuccess}
                 onCancel={handleCancel}
               />
@@ -128,10 +150,12 @@ function App() {
                 editingTranslation={editingTranslation}
                 onSuccess={handleSuccess}
                 onCancel={handleCancel}
+                onCreateRoot={handleCreateRootForTranslation}
               />
             ) : (
               <TranslationsList
                 onEdit={handleEditTranslation}
+                onViewRoot={handleViewRoot}
                 refresh={refreshTrigger}
               />
             )

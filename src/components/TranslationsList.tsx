@@ -5,10 +5,11 @@ import './TranslationsList.css';
 
 interface TranslationsListProps {
   onEdit: (translation: Translation) => void;
+  onViewRoot: (rootValue: string) => void;
   refresh: number;
 }
 
-const TranslationsList: React.FC<TranslationsListProps> = ({ onEdit, refresh }) => {
+const TranslationsList: React.FC<TranslationsListProps> = ({ onEdit, onViewRoot, refresh }) => {
   const [translations, setTranslations] = useState<Translation[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -81,7 +82,19 @@ const TranslationsList: React.FC<TranslationsListProps> = ({ onEdit, refresh }) 
                     <span className="noun-type-badge">{translation.noun_type}</span>
                   )}
                 </td>
-                <td className="root-link">{translation.root}</td>
+                <td className="root-link">
+                  {translation.root ? (
+                    <button
+                      className="link-button"
+                      onClick={() => onViewRoot(translation.root!)}
+                      title="View root details"
+                    >
+                      {translation.root}
+                    </button>
+                  ) : (
+                    <span className="empty-value">—</span>
+                  )}
+                </td>
                 <td className="center">
                   {translation.swadesh ? '✓' : ''}
                 </td>

@@ -22,6 +22,18 @@ export const rootsApi = {
     return response.data;
   },
 
+  getByValue: async (rootValue: string): Promise<Root | null> => {
+    try {
+      const response = await api.get<Root>(`/roots/by-value/${rootValue}`);
+      return response.data;
+    } catch (error: any) {
+      if (error.response?.status === 404) {
+        return null;
+      }
+      throw error;
+    }
+  },
+
   search: async (query: string): Promise<Root[]> => {
     const response = await api.get<Root[]>(`/roots/search?q=${query}`);
     return response.data;

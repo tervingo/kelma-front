@@ -75,12 +75,27 @@
 
 .root-link {
   color: #9c27b0;
-  cursor: pointer;
-  text-decoration: underline;
 }
 
-.root-link:hover {
+.link-button {
+  background: none;
+  border: none;
+  color: #9c27b0;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.link-button:hover {
   color: #ba68c8;
+}
+
+.empty-value {
+  color: #666;
+  font-style: italic;
 }
 
 .category-badge {

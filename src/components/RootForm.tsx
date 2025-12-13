@@ -5,6 +5,7 @@ import './RootForm.css';
 
 interface RootFormProps {
   editingRoot: Root | null;
+  initialRootValue: string | null;
   onSuccess: () => void;
   onCancel: () => void;
 }
@@ -17,7 +18,7 @@ const emptyModeFields: ModeFields = {
   pas_pat: null,
 };
 
-const RootForm: React.FC<RootFormProps> = ({ editingRoot, onSuccess, onCancel }) => {
+const RootForm: React.FC<RootFormProps> = ({ editingRoot, initialRootValue, onSuccess, onCancel }) => {
   const [root, setRoot] = useState('');
   const [baseMode, setBaseMode] = useState<ModeFields>({ ...emptyModeFields });
   const [longMode, setLongMode] = useState<ModeFields>({ ...emptyModeFields });
@@ -39,8 +40,10 @@ const RootForm: React.FC<RootFormProps> = ({ editingRoot, onSuccess, onCancel })
         setStrongMode(editingRoot.mode.strong);
         setEnableStrong(true);
       }
+    } else if (initialRootValue) {
+      setRoot(initialRootValue);
     }
-  }, [editingRoot]);
+  }, [editingRoot, initialRootValue]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

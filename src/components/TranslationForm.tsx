@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { translationsApi } from '../services/api';
+import { translationsApi, rootsApi } from '../services/api';
 import { Translation, Category, NounType, NounFields, VerbFields } from '../types/translation';
 import './TranslationForm.css';
 
@@ -7,6 +7,7 @@ interface TranslationFormProps {
   editingTranslation: Translation | null;
   onSuccess: () => void;
   onCancel: () => void;
+  onCreateRoot: (rootValue: string) => void;
 }
 
 const emptyNounFields: NounFields = {
@@ -35,7 +36,7 @@ const categories: Category[] = [
 
 const nounTypes: NounType[] = ["primary", "radical", "deverbal"];
 
-const TranslationForm: React.FC<TranslationFormProps> = ({ editingTranslation, onSuccess, onCancel }) => {
+const TranslationForm: React.FC<TranslationFormProps> = ({ editingTranslation, onSuccess, onCancel, onCreateRoot }) => {
   const [kelma, setKelma] = useState('');
   const [english, setEnglish] = useState('');
   const [root, setRoot] = useState('');
@@ -98,6 +99,23 @@ const TranslationForm: React.FC<TranslationFormProps> = ({ editingTranslation, o
       } else {
         await translationsApi.create(data);
       }
+
+      // Check if root exists (only if a root value was provided)
+      if (root.trim()) {
+        const existingRoot = await rootsApi.getByValue(root.trim());
+        if (!existingRoot) {
+          // Root doesn't exist, prompt user to create it
+          const shouldCreate = window.confirm(
+            `The root "${root.trim()}" does not exist in the roots collection. Would you like to create it now?`
+          );
+          if (shouldCreate) {
+            handleReset();
+            onCreateRoot(root.trim());
+            return;
+          }
+        }
+      }
+
       handleReset();
       onSuccess();
     } catch (err: any) {
