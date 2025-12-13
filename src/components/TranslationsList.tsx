@@ -21,7 +21,9 @@ const TranslationsList: React.FC<TranslationsListProps> = ({ onEdit, refresh }) 
     try {
       setLoading(true);
       const data = await translationsApi.getAll();
-      setTranslations(data);
+      // Sort alphabetically by kelma field
+      const sorted = data.sort((a, b) => a.kelma.localeCompare(b.kelma));
+      setTranslations(sorted);
       setError(null);
     } catch (err) {
       setError('Failed to load translations');
