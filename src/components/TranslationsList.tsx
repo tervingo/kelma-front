@@ -13,6 +13,7 @@ const TranslationsList: React.FC<TranslationsListProps> = ({ onEdit, onViewRoot,
   const [translations, setTranslations] = useState<Translation[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [viewingTranslation, setViewingTranslation] = useState<Translation | null>(null);
 
   useEffect(() => {
     loadTranslations();
@@ -101,6 +102,13 @@ const TranslationsList: React.FC<TranslationsListProps> = ({ onEdit, onViewRoot,
                 <td>
                   <div className="actions">
                     <button
+                      className="btn-view"
+                      onClick={() => setViewingTranslation(translation)}
+                      title="View"
+                    >
+                      👁️
+                    </button>
+                    <button
                       className="btn-edit"
                       onClick={() => onEdit(translation)}
                       title="Edit"
@@ -120,6 +128,127 @@ const TranslationsList: React.FC<TranslationsListProps> = ({ onEdit, onViewRoot,
             ))}
           </tbody>
         </table>
+      )}
+
+      {viewingTranslation && (
+        <div className="modal-overlay" onClick={() => setViewingTranslation(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Translation Details</h2>
+              <button className="modal-close" onClick={() => setViewingTranslation(null)}>✕</button>
+            </div>
+
+            <div className="modal-body">
+              <div className="view-section">
+                <div className="view-field">
+                  <label>Kelma:</label>
+                  <div className="view-value kelma-text">{viewingTranslation.kelma}</div>
+                </div>
+
+                <div className="view-field">
+                  <label>English:</label>
+                  <div className="view-value">{viewingTranslation.english}</div>
+                </div>
+
+                <div className="view-field">
+                  <label>Root:</label>
+                  <div className="view-value">{viewingTranslation.root || '—'}</div>
+                </div>
+
+                <div className="view-field">
+                  <label>Category:</label>
+                  <div className="view-value">
+                    <span className="category-badge">{viewingTranslation.cat}</span>
+                  </div>
+                </div>
+
+                <div className="view-field">
+                  <label>Swadesh:</label>
+                  <div className="view-value">{viewingTranslation.swadesh ? 'Yes' : 'No'}</div>
+                </div>
+
+                {viewingTranslation.noun_type && (
+                  <div className="view-field">
+                    <label>Noun Type:</label>
+                    <div className="view-value">
+                      <span className="noun-type-badge">{viewingTranslation.noun_type}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {viewingTranslation.noun_fields && (
+                <div className="view-section">
+                  <h3>Noun Fields</h3>
+                  <div className="view-field">
+                    <label>ABS Plural:</label>
+                    <div className="view-value">{viewingTranslation.noun_fields.abs_plural}</div>
+                  </div>
+                  {viewingTranslation.noun_fields.abs_plural2 && (
+                    <div className="view-field">
+                      <label>ABS Plural 2:</label>
+                      <div className="view-value">{viewingTranslation.noun_fields.abs_plural2}</div>
+                    </div>
+                  )}
+                  <div className="view-field">
+                    <label>ERG Plural:</label>
+                    <div className="view-value">{viewingTranslation.noun_fields.erg_plural}</div>
+                  </div>
+                  <div className="view-field">
+                    <label>GEN Plural:</label>
+                    <div className="view-value">{viewingTranslation.noun_fields.gen_plural}</div>
+                  </div>
+                  <div className="view-field">
+                    <label>DAT Plural:</label>
+                    <div className="view-value">{viewingTranslation.noun_fields.dat_plural}</div>
+                  </div>
+                  <div className="view-field">
+                    <label>Partitive:</label>
+                    <div className="view-value">{viewingTranslation.noun_fields.par}</div>
+                  </div>
+                </div>
+              )}
+
+              {viewingTranslation.verb_fields && (
+                <div className="view-section">
+                  <h3>Verb Fields</h3>
+                  <div className="view-field">
+                    <label>Infinitive I:</label>
+                    <div className="view-value">{viewingTranslation.verb_fields.inf_i}</div>
+                  </div>
+                  <div className="view-field">
+                    <label>Progressive Stem:</label>
+                    <div className="view-value">{viewingTranslation.verb_fields.prog_stem}</div>
+                  </div>
+                  <div className="view-field">
+                    <label>Perfect Stem:</label>
+                    <div className="view-value">{viewingTranslation.verb_fields.perf_stem}</div>
+                  </div>
+                  <div className="view-field">
+                    <label>N-Participle:</label>
+                    <div className="view-value">{viewingTranslation.verb_fields.n_part}</div>
+                  </div>
+                  <div className="view-field">
+                    <label>T-Participle:</label>
+                    <div className="view-value">{viewingTranslation.verb_fields.t_part}</div>
+                  </div>
+                  <div className="view-field">
+                    <label>S-Participle:</label>
+                    <div className="view-value">{viewingTranslation.verb_fields.s_part}</div>
+                  </div>
+                  <div className="view-field">
+                    <label>V-Participle:</label>
+                    <div className="view-value">{viewingTranslation.verb_fields.v_part}</div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="modal-footer">
+              <button className="btn-secondary" onClick={() => setViewingTranslation(null)}>Close</button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
