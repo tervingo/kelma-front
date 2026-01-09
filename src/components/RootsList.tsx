@@ -21,7 +21,9 @@ const RootsList: React.FC<RootsListProps> = ({ onEdit, refresh }) => {
     try {
       setLoading(true);
       const data = await rootsApi.getAll();
-      setRoots(data);
+      // Sort alphabetically by root field
+      const sorted = data.sort((a, b) => a.root.localeCompare(b.root));
+      setRoots(sorted);
       setError(null);
     } catch (err) {
       setError('Failed to load roots');
